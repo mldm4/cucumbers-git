@@ -30,11 +30,14 @@ import io
 import logging
 import os
 import random
+import sys
 
 from lxml import etree
 import PIL.Image
 import tensorflow as tf
 
+
+sys.path.append("/home/maria/TFM/models/research")
 from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
 
