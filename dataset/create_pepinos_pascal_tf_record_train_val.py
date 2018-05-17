@@ -165,19 +165,12 @@ def main(_):
   label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
   logging.info('Reading from cumcumber dataset.')
-  image_dir = os.path.join(data_dir, 'images')
+  train_dir = os.path.join(data_dir, 'images/train_set')
+  val_dir = os.path.join(data_dir, 'images/val_set')
   annotations_dir = os.path.join(data_dir, 'annotations')
-  examples_path = os.path.join(annotations_dir, 'trainval.txt')
-  examples_list = dataset_util.read_examples_list(examples_path)
 
-  # Randomly split for a validation set
-  random.seed(42)
-  random.shuffle(examples_list)
-  num_examples = len(examples_list)
-  num_train = int(0.7 * num_examples)
-  print(num_train)
-  train_examples = examples_list[:num_train]
-  val_examples = examples_list[num_train:]
+  train_examples = os.listdir(train_dir)
+  val_examples = os.listdir(val_dir)
   logging.info('%d training and %d validation examples.',
                len(train_examples), len(val_examples))
 
