@@ -2,3 +2,4 @@ dataset/images/
 models/model.ckpt*
 models/train
 models/eval
+.idea/
