@@ -20,7 +20,7 @@ MODEL_NAME = 'faster_rcnn_resnet101_pets'
 PATH_TO_CKPT = '/home/maria/TFM/cucumbers-git/models/exported_graphs/frozen_inference_graph.pb'
 PATH_TO_LABELS = 'cucumber_label_map.pbtxt'
 NUM_CLASSES = 1
-PATH_TO_TEST_IMAGES_DIR = 'images/val_set'
+PATH_TO_TEST_IMAGES_DIR = 'images/test_set'
 PATH_TO_TEST_DIR = '/home/maria/TFM/cucumbers-git/models/exported_graphs'
 
 def load_image_into_numpy_array(image):

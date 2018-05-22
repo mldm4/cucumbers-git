@@ -26,18 +26,6 @@
 	<object>
 		<name>cucumber</name>
 		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1087</xmin>
-			<ymin>214</ymin>
-			<xmax>1800</xmax>
-			<ymax>956</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
 		<truncated>1</truncated>
 		<difficult>0</difficult>
 		<bndbox>

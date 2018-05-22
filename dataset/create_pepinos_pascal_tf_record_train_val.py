@@ -44,6 +44,7 @@ from object_detection.utils import label_map_util
 
 flags = tf.app.flags
 flags.DEFINE_string('data_dir', '', 'Root directory to raw PASCAL VOC dataset.')
+flags.DEFINE_string('sub_dir', '', 'Sub directory to dataset: train, val, test...')
 flags.DEFINE_string('annotations_dir', 'annotations',
                     '(Relative) path to annotations directory.')
 flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
@@ -151,8 +152,8 @@ def create_tf_record(output_filename,
     for idx, example in enumerate(examples):
         if idx % 10 == 0:
             logging.info('On image %d of %d', idx, len(examples))
-        example = example.split('.')[0]
-        subdirectory = output_filename.split('_')[1].split('.')[0] + '_set'
+        example = example.split('.jpg')[0]
+        subdirectory = FLAGS.sub_dir + '_set'
         path = os.path.join(annotations_dir, subdirectory, example + '.xml')
         with tf.gfile.GFile(path, 'r') as fid:
             xml_str = fid.read()
@@ -166,31 +167,24 @@ def create_tf_record(output_filename,
 
 def main(_):
   data_dir = FLAGS.data_dir
+  sub_dir = FLAGS.sub_dir
   label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
   logging.info('Reading from cumcumber dataset.')
-  train_dir = os.path.join(data_dir, 'train_set')
-  val_dir = os.path.join(data_dir, 'val_set')
+  subset_dir = os.path.join(data_dir, sub_dir)
   annotations_dir = FLAGS.annotations_dir
 
-  train_examples = os.listdir(train_dir)
-  val_examples = os.listdir(val_dir)
-  logging.info('%d training and %d validation examples.',
-               len(train_examples), len(val_examples))
+  subset_examples = os.listdir(subset_dir+'_set')
+  logging.info('%d'+sub_dir+' examples.',
+               len(subset_examples))
 
-  train_output_path = os.path.join(FLAGS.output_path, 'cucumber_train.record')
-  val_output_path = os.path.join(FLAGS.output_path, 'cucumber_val.record')
+  train_output_path = os.path.join(FLAGS.output_path, 'cucumber_'+sub_dir+'.record')
 
   create_tf_record(
       train_output_path,
       label_map_dict,
       annotations_dir,
-      train_examples)
-  create_tf_record(
-      val_output_path,
-      label_map_dict,
-      annotations_dir,
-      val_examples)
+      subset_examples)
 
 if __name__ == '__main__':
   tf.app.run()

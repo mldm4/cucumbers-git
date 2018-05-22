@@ -1,0 +1,26 @@
+<annotation>
+	<folder>test_set</folder>
+	<filename>cucumber_2018-05-22T11:17:54.162031.jpg</filename>
+	<path>/home/maria/TFM/cucumbers-git/dataset/images/test_set/cucumber_2018-05-22T11:17:54.162031.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>400</width>
+		<height>300</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>68</xmin>
+			<ymin>136</ymin>
+			<xmax>368</xmax>
+			<ymax>300</ymax>
+		</bndbox>
+	</object>
+</annotation>

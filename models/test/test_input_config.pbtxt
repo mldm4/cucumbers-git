@@ -1,0 +1,9 @@
+tf_record_input_reader {
+    #input_path: "/home/maria/TFM/run_pepinos/data/tfpepinoscopy.record"
+    input_path: "/home/maria/TFM/cucumbers-git/dataset/records/cucumber_test_inference.tfrecord"
+}
+#label_map_path: "/home/maria/TFM/run_pepinos/data/cucumber_label_map.pbtxt"
+label_map_path: "/home/maria/TFM/cucumbers-git/dataset/cucumber_label_map.pbtxt"
+shuffle: false
+num_readers: 1
+
