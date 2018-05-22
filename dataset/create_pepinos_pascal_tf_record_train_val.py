@@ -151,12 +151,13 @@ def create_tf_record(output_filename,
     for idx, example in enumerate(examples):
         if idx % 10 == 0:
             logging.info('On image %d of %d', idx, len(examples))
-        path = os.path.join(annotations_dir, example + '.xml')
+        example = example.split('.')[0]
+        subdirectory = output_filename.split('_')[1].split('.')[0] + '_set'
+        path = os.path.join(annotations_dir, subdirectory, example + '.xml')
         with tf.gfile.GFile(path, 'r') as fid:
             xml_str = fid.read()
         xml = etree.fromstring(xml_str)
         data = dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
-
         tf_example = dict_to_tf_example(data, FLAGS.data_dir, label_map_dict,
                                       FLAGS.ignore_difficult_instances)
         writer.write(tf_example.SerializeToString())
@@ -168,9 +169,9 @@ def main(_):
   label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
   logging.info('Reading from cumcumber dataset.')
-  train_dir = os.path.join(data_dir, 'images/train_set')
-  val_dir = os.path.join(data_dir, 'images/val_set')
-  annotations_dir = os.path.join(data_dir, 'annotations')
+  train_dir = os.path.join(data_dir, 'train_set')
+  val_dir = os.path.join(data_dir, 'val_set')
+  annotations_dir = FLAGS.annotations_dir
 
   train_examples = os.listdir(train_dir)
   val_examples = os.listdir(val_dir)
