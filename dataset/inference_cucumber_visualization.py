@@ -2,6 +2,7 @@ import numpy as np
 import os
 import sys
 import tensorflow as tf
+import datetime
 
 #from matplotlib import pyplot as plt
 import cv2
@@ -15,7 +16,9 @@ sys.path.append("/home/maria/TFM/models/research/object_detection")
 from utils import label_map_util
 from utils import visualization_utils as vis_util
 from utils import object_detection_evaluation
+from utils import config_util
 
+MAX_DIMENSION = 780
 MODEL_NAME = 'faster_rcnn_resnet101_pets'
 PATH_TO_CKPT = '/home/maria/TFM/cucumbers-git/models/exported_graphs/frozen_inference_graph.pb'
 PATH_TO_LABELS = 'cucumber_label_map.pbtxt'
@@ -27,6 +30,13 @@ def load_image_into_numpy_array(image):
   (im_width, im_height) = image.size
   return np.array(image.getdata()).reshape(
       (im_height, im_width, 3)).astype(np.uint8)
+
+def resize_img (image):
+    h, w = image.shape[:2]
+    r = MAX_DIMENSION / w
+    new_h = int(h * r)
+    img = cv2.resize(image, (MAX_DIMENSION, new_h))
+    return img
 
 def run_inference_for_single_image(image, graph, evaluator):
   with graph.as_default():
@@ -93,6 +103,7 @@ for image_path in test_image_paths:
   # the array based representation of the image will be used later in order to prepare the
   # result image with boxes and labels on it.
   image_np = load_image_into_numpy_array(image)
+  image_np = resize_img(image_np)
   # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
   image_np_expanded = np.expand_dims(image_np, axis=0)
   # Actual detection.
@@ -111,6 +122,8 @@ for image_path in test_image_paths:
   #cv2.namedWindow('cucumbers test', cv2.WINDOW_NORMAL)
   # cv2.resizeWindow('cucumbers test', IMAGE_SIZE[0], IMAGE_SIZE[1])
   cv2.imshow('cucumbers test', image_np)
-  cv2.waitKey()
+  key = cv2.waitKey()
+  if key == 121:
+      cv2.imwrite(datetime.datetime.now().isoformat()+'.jpg', image_np)
   cv2.destroyWindow('cucumbers test')
 
