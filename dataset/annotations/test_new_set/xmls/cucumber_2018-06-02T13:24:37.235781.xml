@@ -1,7 +1,7 @@
 <annotation>
-	<folder>test_set</folder>
-	<filename>cucumber_2018-05-22T11:17:55.295769.jpg</filename>
-	<path>/home/maria/TFM/cucumbers-git/dataset/images/test_set/cucumber_2018-05-22T11:17:55.295769.jpg</path>
+	<folder>test_new_set</folder>
+	<filename>cucumber_2018-06-02T13:24:37.235781.jpg</filename>
+	<path>/home/maria/TFM/cucumbers-git/dataset/images/test_new_set/cucumber_2018-06-02T13:24:37.235781.jpg</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -17,10 +17,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>16</xmin>
-			<ymin>107</ymin>
-			<xmax>70</xmax>
-			<ymax>311</ymax>
+			<xmin>147</xmin>
+			<ymin>27</ymin>
+			<xmax>268</xmax>
+			<ymax>130</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -29,10 +29,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>240</xmin>
-			<ymin>347</ymin>
-			<xmax>415</xmax>
-			<ymax>424</ymax>
+			<xmin>262</xmin>
+			<ymin>113</ymin>
+			<xmax>416</xmax>
+			<ymax>156</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -41,10 +41,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>94</xmin>
-			<ymin>148</ymin>
-			<xmax>208</xmax>
-			<ymax>319</ymax>
+			<xmin>310</xmin>
+			<ymin>151</ymin>
+			<xmax>456</xmax>
+			<ymax>203</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -53,22 +53,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>64</xmin>
-			<ymin>340</ymin>
-			<xmax>240</xmax>
-			<ymax>435</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>1</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1</xmin>
-			<ymin>308</ymin>
-			<xmax>167</xmax>
-			<ymax>418</ymax>
+			<xmin>51</xmin>
+			<ymin>71</ymin>
+			<xmax>180</xmax>
+			<ymax>139</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -77,58 +65,58 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>242</xmin>
-			<ymin>123</ymin>
-			<xmax>407</xmax>
-			<ymax>224</ymax>
+			<xmin>71</xmin>
+			<ymin>106</ymin>
+			<xmax>195</xmax>
+			<ymax>163</ymax>
 		</bndbox>
 	</object>
 	<object>
 		<name>cucumber</name>
 		<pose>Unspecified</pose>
-		<truncated>1</truncated>
+		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>290</xmin>
-			<ymin>1</ymin>
-			<xmax>345</xmax>
-			<ymax>151</ymax>
+			<xmin>139</xmin>
+			<ymin>108</ymin>
+			<xmax>249</xmax>
+			<ymax>191</ymax>
 		</bndbox>
 	</object>
 	<object>
 		<name>cucumber</name>
 		<pose>Unspecified</pose>
-		<truncated>1</truncated>
+		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>226</xmin>
-			<ymin>1</ymin>
+			<xmin>171</xmin>
+			<ymin>136</ymin>
+			<xmax>285</xmax>
+			<ymax>228</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>175</xmin>
+			<ymin>21</ymin>
+			<xmax>297</xmax>
+			<ymax>107</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>192</xmin>
+			<ymin>176</ymin>
 			<xmax>302</xmax>
-			<ymax>141</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>1</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>162</xmin>
-			<ymin>1</ymin>
-			<xmax>252</xmax>
-			<ymax>131</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>1</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1</xmin>
-			<ymin>1</ymin>
-			<xmax>137</xmax>
-			<ymax>47</ymax>
+			<ymax>262</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -137,10 +125,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>108</xmin>
-			<ymin>97</ymin>
-			<xmax>234</xmax>
-			<ymax>157</ymax>
+			<xmin>223</xmin>
+			<ymin>198</ymin>
+			<xmax>358</xmax>
+			<ymax>295</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -149,10 +137,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>164</xmin>
-			<ymin>171</ymin>
-			<xmax>270</xmax>
-			<ymax>318</ymax>
+			<xmin>287</xmin>
+			<ymin>247</ymin>
+			<xmax>358</xmax>
+			<ymax>355</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -161,81 +149,57 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>201</xmin>
-			<ymin>207</ymin>
-			<xmax>302</xmax>
-			<ymax>350</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>255</xmin>
-			<ymin>228</ymin>
-			<xmax>356</xmax>
-			<ymax>352</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>0</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>324</xmin>
+			<xmin>318</xmin>
 			<ymin>226</ymin>
-			<xmax>446</xmax>
-			<ymax>341</ymax>
+			<xmax>405</xmax>
+			<ymax>384</ymax>
 		</bndbox>
 	</object>
 	<object>
 		<name>cucumber</name>
 		<pose>Unspecified</pose>
-		<truncated>1</truncated>
+		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>345</xmin>
-			<ymin>244</ymin>
-			<xmax>458</xmax>
+			<xmin>13</xmin>
+			<ymin>171</ymin>
+			<xmax>146</xmax>
+			<ymax>249</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>63</xmin>
+			<ymin>216</ymin>
+			<xmax>208</xmax>
+			<ymax>265</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>73</xmin>
+			<ymin>259</ymin>
+			<xmax>143</xmax>
 			<ymax>376</ymax>
 		</bndbox>
 	</object>
 	<object>
 		<name>cucumber</name>
 		<pose>Unspecified</pose>
-		<truncated>1</truncated>
+		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>331</xmin>
-			<ymin>111</ymin>
-			<xmax>458</xmax>
-			<ymax>244</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>1</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>337</xmin>
-			<ymin>1</ymin>
-			<xmax>408</xmax>
-			<ymax>92</ymax>
-		</bndbox>
-	</object>
-	<object>
-		<name>cucumber</name>
-		<pose>Unspecified</pose>
-		<truncated>1</truncated>
-		<difficult>0</difficult>
-		<bndbox>
-			<xmin>1</xmin>
-			<ymin>308</ymin>
-			<xmax>169</xmax>
+			<xmin>116</xmin>
+			<ymin>276</ymin>
+			<xmax>175</xmax>
 			<ymax>420</ymax>
 		</bndbox>
 	</object>
@@ -245,10 +209,22 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>226</xmin>
-			<ymin>389</ymin>
-			<xmax>388</xmax>
-			<ymax>437</ymax>
+			<xmin>156</xmin>
+			<ymin>302</ymin>
+			<xmax>213</xmax>
+			<ymax>433</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>317</xmin>
+			<ymin>341</ymin>
+			<xmax>416</xmax>
+			<ymax>446</ymax>
 		</bndbox>
 	</object>
 </annotation>
