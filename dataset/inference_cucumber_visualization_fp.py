@@ -3,6 +3,7 @@ import os
 import sys
 import tensorflow as tf
 import datetime
+import functools
 
 #from matplotlib import pyplot as plt
 import cv2
@@ -11,9 +12,14 @@ from PIL import Image
 sys.path.append(".")
 import visualization_with_eval
 
+sys.path.append("/home/maria/TFM/models/research/slim")
 sys.path.append("/home/maria/TFM/models/research")
 from object_detection.utils import ops as utils_ops
 from object_detection import eval_util
+from object_detection import evaluator as evtor
+from object_detection.builders import model_builder
+from object_detection.utils import dataset_util
+from object_detection.builders import dataset_builder
 
 sys.path.append("/home/maria/TFM/models/research/object_detection")
 from utils import label_map_util
@@ -22,12 +28,11 @@ from utils import object_detection_evaluation
 from utils import config_util
 
 MAX_DIMENSION = 780
-MODEL_NAME = 'faster_rcnn_resnet101_pets'
+PIPELINE_CONFIG_PATH = '/home/maria/TFM/cucumbers-git/models/faster_rcnn_resnet101_pets.config'
 PATH_TO_CKPT = '/home/maria/TFM/cucumbers-git/models/exported_graphs_exp3/frozen_inference_graph.pb'
 PATH_TO_LABELS = 'cucumber_label_map.pbtxt'
 NUM_CLASSES = 1
 PATH_TO_TEST_IMAGES_DIR = 'images/test_new_set'
-PATH_TO_TEST_DIR = '/home/maria/TFM/cucumbers-git/models/exported_graphs'
 
 def load_image_into_numpy_array(image):
   (im_width, im_height) = image.size
@@ -41,21 +46,41 @@ def resize_img (image):
     img = cv2.resize(image, (MAX_DIMENSION, new_h))
     return img
 
-def run_inference_for_single_image(image, graph):
+def run_inference_for_single_image(image, graph, evaluator):
   with graph.as_default():
     with tf.Session() as sess:
+      configs = config_util.get_configs_from_pipeline_file(
+        PIPELINE_CONFIG_PATH)
+
+      def get_next(config):
+        return dataset_util.make_initializable_iterator(
+            dataset_builder.build(config)).get_next()
+      create_input_dict_fn = functools.partial(get_next, configs['eval_input_config'])
+
+      eval_config = configs['eval_config']
+      model_fn = functools.partial(
+        model_builder.build,
+        model_config=configs['model'],
+        is_training=False)
+      model = model_fn()
+      tensor_dict = evtor._extract_prediction_tensors(
+        model=model,
+        create_input_dict_fn=create_input_dict_fn,
+        ignore_groundtruth=eval_config.ignore_groundtruth)
+
+
       # Get handles to input and output tensors
       ops = tf.get_default_graph().get_operations()
       all_tensor_names = {output.name for op in ops for output in op.outputs}
-      tensor_dict = {}
-      for key in [
-          'num_detections', 'detection_boxes', 'detection_scores',
-          'detection_classes', 'detection_masks'
-      ]:
-        tensor_name = key + ':0'
-        if tensor_name in all_tensor_names:
-          tensor_dict[key] = tf.get_default_graph().get_tensor_by_name(
-              tensor_name)
+      #tensor_dict = {}
+      # for key in [
+      #     'num_detections', 'detection_boxes', 'detection_scores',
+      #     'detection_classes', 'detection_masks'
+      # ]:
+      #   tensor_name = key + ':0'
+      #   if tensor_name in all_tensor_names:
+      #     tensor_dict[key] = tf.get_default_graph().get_tensor_by_name(
+      #         tensor_name)
       if 'detection_masks' in tensor_dict:
         # The following processing is only for single image
         detection_boxes = tf.squeeze(tensor_dict['detection_boxes'], [0])
@@ -85,6 +110,12 @@ def run_inference_for_single_image(image, graph):
       if 'detection_masks' in output_dict:
         output_dict['detection_masks'] = output_dict['detection_masks'][0]
 
+      evaluator.add_single_ground_truth_image_info(
+          image_id=1, groundtruth_dict=output_dict)
+      evaluator.add_single_detected_image_info(
+          image_id=1, detections_dict=output_dict)
+      metrics = evaluator.evaluate()
+      evaluator.clear()
   return output_dict
 
 detection_graph = tf.Graph()
@@ -111,7 +142,7 @@ for image_path in test_image_paths:
   image_np_expanded = np.expand_dims(image_np, axis=0)
   # Actual detection.
   evaluator = object_detection_evaluation.PascalDetectionEvaluator(categories=categories)
-  output_dict = run_inference_for_single_image(image_np, detection_graph)
+  output_dict = run_inference_for_single_image(image_np, detection_graph, evaluator)
 
   # Visualization of the results of a detection.
   cv2.imshow('cucumbers test', image_np)

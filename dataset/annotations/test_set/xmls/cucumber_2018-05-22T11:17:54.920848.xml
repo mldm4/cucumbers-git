@@ -47,4 +47,16 @@
 			<ymax>873</ymax>
 		</bndbox>
 	</object>
+	<object>
+		<name>cucumber</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>68</xmin>
+			<ymin>509</ymin>
+			<xmax>381</xmax>
+			<ymax>866</ymax>
+		</bndbox>
+	</object>
 </annotation>

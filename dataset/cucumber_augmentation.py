@@ -25,8 +25,8 @@ for file in list:
     images.append(cv2.imread(os.path.join(in_path,file)))
 
 for iter in range(iterations):
-        seq = iaa.Sequential([iaa.GaussianBlur((0, 3.0)),
-                              iaa.Affine(scale=(0.7,1.3),mode='reflect', rotate=(-45,45)),
+        seq = iaa.Sequential([iaa.GaussianBlur((0, 1.5)),
+                              iaa.Affine(scale=(0.7,1.3),mode='constant', rotate=(-45,45)),
                               iaa.Fliplr(0.5), iaa.Flipud(0.5)])
 
         images_aug = seq.augment_images(images)

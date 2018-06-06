@@ -41,7 +41,7 @@ sys.path.append("/home/maria/TFM/models/research")
 from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
 
-
+#--data_dir images --sub_dir train --annotations_dir annotations --output_path records --label_map_path cucumber_label_map.pbtxt
 flags = tf.app.flags
 flags.DEFINE_string('data_dir', '', 'Root directory to raw PASCAL VOC dataset.')
 flags.DEFINE_string('sub_dir', '', 'Sub directory to dataset: train, val, test...')
@@ -153,8 +153,7 @@ def create_tf_record(output_filename,
         if idx % 10 == 0:
             logging.info('On image %d of %d', idx, len(examples))
         example = example.split('.jpg')[0]
-        subdirectory = FLAGS.sub_dir + '_set'
-        path = os.path.join(annotations_dir, subdirectory, example + '.xml')
+        path = os.path.join(annotations_dir, example + '.xml')
         with tf.gfile.GFile(path, 'r') as fid:
             xml_str = fid.read()
         xml = etree.fromstring(xml_str)
@@ -172,16 +171,16 @@ def main(_):
 
   logging.info('Reading from cumcumber dataset.')
   subset_dir = os.path.join(data_dir, sub_dir)
-  annotations_dir = FLAGS.annotations_dir
+  annotations_dir = os.path.join(FLAGS.annotations_dir, sub_dir+'_set', 'xmls')
 
   subset_examples = os.listdir(subset_dir+'_set')
   logging.info('%d'+sub_dir+' examples.',
                len(subset_examples))
 
-  train_output_path = os.path.join(FLAGS.output_path, 'cucumber_'+sub_dir+'.record')
+  output_path = os.path.join(FLAGS.output_path, 'cucumber_'+sub_dir+'.record')
 
   create_tf_record(
-      train_output_path,
+      output_path,
       label_map_dict,
       annotations_dir,
       subset_examples)
