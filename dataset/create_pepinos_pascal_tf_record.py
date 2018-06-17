@@ -152,15 +152,16 @@ def create_tf_record(output_filename,
     for idx, example in enumerate(examples):
         if idx % 10 == 0:
             logging.info('On image %d of %d', idx, len(examples))
-        example = example.split('.jpg')[0]
-        path = os.path.join(annotations_dir, example + '.xml')
-        with tf.gfile.GFile(path, 'r') as fid:
-            xml_str = fid.read()
-        xml = etree.fromstring(xml_str)
-        data = dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
-        tf_example = dict_to_tf_example(data, FLAGS.data_dir, label_map_dict,
-                                      FLAGS.ignore_difficult_instances)
-        writer.write(tf_example.SerializeToString())
+        if example.endswith('.jpg'):
+            example = example.split('.jpg')[0]
+            path = os.path.join(annotations_dir, example + '.xml')
+            with tf.gfile.GFile(path, 'r') as fid:
+                xml_str = fid.read()
+            xml = etree.fromstring(xml_str)
+            data = dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
+            tf_example = dict_to_tf_example(data, FLAGS.data_dir, label_map_dict,
+                                          FLAGS.ignore_difficult_instances)
+            writer.write(tf_example.SerializeToString())
 
     writer.close()
 

@@ -23,11 +23,10 @@ from utils import config_util
 
 MAX_DIMENSION = 780
 MODEL_NAME = 'faster_rcnn_resnet101_pets'
-PATH_TO_CKPT = '/home/maria/TFM/cucumbers-git/models/exported_graphs_exp3/frozen_inference_graph.pb'
+PATH_TO_CKPT = '/home/maria/TFM/cucumbers-git/models/exported_graphs_exp4/frozen_inference_graph.pb'
 PATH_TO_LABELS = 'cucumber_label_map.pbtxt'
 NUM_CLASSES = 1
-PATH_TO_TEST_IMAGES_DIR = 'images/test_new_set'
-PATH_TO_TEST_DIR = '/home/maria/TFM/cucumbers-git/models/exported_graphs'
+PATH_TO_TEST_IMAGES_DIR = 'images/belt_test_set'
 
 def load_image_into_numpy_array(image):
   (im_width, im_height) = image.size
@@ -114,8 +113,8 @@ for image_path in test_image_paths:
   output_dict = run_inference_for_single_image(image_np, detection_graph)
 
   # Visualization of the results of a detection.
-  cv2.imshow('cucumbers test', image_np)
-  cv2.waitKey()
+  # cv2.imshow('cucumbers test', image_np)
+  # cv2.waitKey()
 
   vis_util.visualize_boxes_and_labels_on_image_array(
       image_np,
